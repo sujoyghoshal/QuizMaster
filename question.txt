@@ -1,0 +1,10 @@
+1. Given a json file example: [{"Question":"What is your name", "Answer":"Sujoy"}]
+2. In the endpoint called "/get_question", you have to show questions randomly from the given json file.
+3. Now take answer from the user using below conditions
+    i. Show "_" for each character for the particular answer, example: if answer is "sujoy" show " _ _ _ _ _" underscore.
+   ii. take each character from user, if user is pressed "s" then replace "_" with "s".
+   iii. In this way you have to take input from the user.
+4. User would be given of 3 chances for each wrong input of character.
+5. If user correctly answer for the given question give some points for each questions.
+6. make another endpoint called "/score", whether user failed or win the game.
+

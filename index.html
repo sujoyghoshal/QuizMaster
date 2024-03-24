@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Game</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h3>Question-1</h3>
+    <div id="question-container">
+    </div>
+    <div id="message"></div>
+    <form id="answer-form">
+        <label for="answer">Your Answer:</label>
+        <input type="text" id="answer" name="answer">
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        function getQuestion() {
+            fetch('/get_question')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('question-container').innerHTML = `<p>${data.question}</p>`;
+                    // Set input value to underscores
+                    const numberOfUnderscores = data.answerUnderscores.length;
+                    document.getElementById('answer').value = '_ '.repeat(numberOfUnderscores).trim();
+                })
+                .catch(error => console.error('Error fetching question:', error));
+        }
+        document.getElementById('answer-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const answer = document.getElementById('answer').value;
+
+            fetch('/check_answer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ answer })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('message').textContent = data.message;
+                    if (data.score !== undefined) {
+                        alert('Your score: ' + data.score);
+                    }
+                    getQuestion();
+                })
+                .catch(error => console.error('Error submitting answer:', error));
+        });
+        getQuestion();
+    </script>
+</body>
+
+</html>

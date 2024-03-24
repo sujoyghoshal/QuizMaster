@@ -1,0 +1,22 @@
+[
+    {
+        "Question": "What is your name?",
+        "Answer": "Sujoy"
+    },
+    {
+        "Question": "Where are you from?",
+        "Answer": "Earth"
+    },
+    {
+        "Question": "What is the capital of France?",
+        "Answer": "Paris"
+    },
+    {
+        "Question": "What is the color of the sky?",
+        "Answer": "Blue"
+    },
+    {
+        "Question": "What is 2 + 2?",
+        "Answer": "4"
+    }
+]
